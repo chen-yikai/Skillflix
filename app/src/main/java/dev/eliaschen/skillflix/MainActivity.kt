@@ -5,6 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.compose.animation.Crossfade
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.graphics.Color
@@ -35,12 +37,13 @@ class MainActivity : ComponentActivity() {
                     LocalNavViewModel provides nav,
                     LocalNetworkViewModel provides api
                 ) {
-                    when (nav.currentScreen) {
-                        Screen.Home -> Home()
-                        Screen.Collection -> Collection()
-                        Screen.ActualList -> ActualList()
-                        Screen.Detail -> Detail()
-                        else -> {}
+                    Crossfade(nav.currentScreen) { screen ->
+                        when (screen) {
+                            Screen.Home -> Home()
+                            Screen.Collection -> Collection()
+                            Screen.ActualList -> ActualList()
+                            Screen.Detail -> Detail()
+                        }
                     }
                 }
             }
