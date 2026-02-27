@@ -45,7 +45,7 @@ open class ApiClient(private val context: Application) : AndroidViewModel(contex
             val req =
                 Request.Builder().post(body).headers(tokenHeader).url("$host/api$path").build()
             val res = client.newCall(req).execute()
-            if (res.code >= 300) {
+            if (res.code >= 400) {
                 throw Exception("Failed to POST $path")
             }
         }
@@ -53,7 +53,7 @@ open class ApiClient(private val context: Application) : AndroidViewModel(contex
     protected suspend fun delete(path: String) = withContext(Dispatchers.IO) {
         val req = Request.Builder().delete().headers(tokenHeader).url("$host/api$path").build()
         val res = client.newCall(req).execute()
-        if (res.code >= 300) {
+        if (res.code >= 400) {
             throw Exception("Failed to DELETE $path")
         }
     }

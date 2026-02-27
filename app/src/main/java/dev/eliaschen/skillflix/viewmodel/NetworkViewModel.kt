@@ -27,8 +27,8 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 
-//const val host = "https://skillflix.skills.eliaschen.dev"
-const val host = "http://10.0.2.2:3000"
+const val host = "https://skillflix.skills.eliaschen.dev"
+//const val host = "http://10.0.2.2:3000"
 const val token = "kitty-secret-key"
 
 class NetworkViewModel(val context: Application) : ApiClient(context) {
@@ -114,7 +114,7 @@ class NetworkViewModel(val context: Application) : ApiClient(context) {
             try {
                 delete("/collection/$titleId")
             } catch (e: Exception) {
-                Log.e("Remove","${e.message!!}")
+                Log.e("Remove","${e.message}!!")
             }
         }
     }
